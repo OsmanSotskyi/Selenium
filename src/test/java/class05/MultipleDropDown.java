@@ -1,0 +1,25 @@
+package class05;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class MultipleDropDown {
+    public static void main(String[] args) throws InterruptedException {
+        //declare the instance of Webdriver
+        WebDriver driver = new ChromeDriver();
+        //use the driver.get() method
+        driver.get("http://35.175.58.98/basic-select-dropdown-demo.php");
+        //maximize our window
+        driver.manage().window().maximize();
+        WebElement dd = driver.findElement(By.xpath("//Select[@id='multi-select']"));
+        Select sel = new Select(dd);
+        sel.selectByVisibleText("Texas");
+        sel.selectByValue("Florida");
+        Thread.sleep(3000);
+        sel.deselectByVisibleText("Texas");
+        System.out.println(sel.isMultiple());
+    }
+}

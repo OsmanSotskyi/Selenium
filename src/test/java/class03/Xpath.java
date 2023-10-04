@@ -1,4 +1,4 @@
-package class3;
+package class03;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
