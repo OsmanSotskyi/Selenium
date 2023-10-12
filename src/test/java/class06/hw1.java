@@ -15,15 +15,24 @@ public class hw1 {
         //maximize our window
         driver.manage().window().maximize();
 
-        driver.switchTo().frame(1);
-        WebElement checkBox = driver.findElement(By.xpath("//select[@id='animals']"));
-        Select sel = new Select(checkBox);
-        sel.selectByVisibleText("Baby Cat");
+        driver.switchTo().frame("textfieldIframe");
+        WebElement frameCheckBox = driver.findElement(By.xpath("//iframe[@id='checkboxIframe']"));
+        driver.switchTo().frame(frameCheckBox);
+        WebElement checkBox = driver.findElement(By.xpath("//input[@class='cb1-element']"));
+        checkBox.click();
 
         driver.switchTo().defaultContent();
+        driver.switchTo().frame("dropdownIframe");
+        WebElement animals = driver.findElement(By.xpath("//select[@id='animals']"));
+        Select sel = new Select(animals);
+        sel.selectByVisibleText("Baby Cat");
 
-        driver.switchTo().frame(0);
-        WebElement textBoxTopic = driver.findElement(By.xpath("//input[@name='Topic']"));
-        textBoxTopic.sendKeys("Baby Cat");
+
+
+        driver.switchTo().defaultContent();
+        driver.switchTo().frame("textfieldIframe");
+//        sending the topic
+        driver.findElement(By.name("Topic")).sendKeys("abcdef");
+
     }
 }
